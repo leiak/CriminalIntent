@@ -69,7 +69,7 @@ public class CrimeFragment extends Fragment {
         if (requestCode == REQUEST_DATE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mCrime.setDate(date);
-            mCrimeData.setText(mCrime.getDate().toString());
+            updateDate();
         }
     }
 
@@ -98,7 +98,7 @@ public class CrimeFragment extends Fragment {
         });
 
         mCrimeData = (Button) v.findViewById(R.id.crime_data);
-        mCrimeData.setText(mCrime.getDate().toString());
+        updateDate();
         //mCrimeData.setEnabled(false);
         mCrimeData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +122,10 @@ public class CrimeFragment extends Fragment {
 
         return v;
 
+    }
+
+    private void updateDate() {
+        mCrimeData.setText(mCrime.getDate().toString());
     }
 
 }
