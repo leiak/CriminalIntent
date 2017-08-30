@@ -25,6 +25,8 @@ public class CrimeFragment extends Fragment {
     private Button mCrimeData;
     private CheckBox mCrimeSolved;
 
+    private static final String ARG_CRIME_ID = "crime_id";
+
 
     public CrimeFragment() {
         // Required empty public constructor
@@ -34,8 +36,21 @@ public class CrimeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //mCrime = new Crime();
-        UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+        //UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+        //mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+
+        UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+    }
+
+    public static CrimeFragment newInstance(UUID crimeId){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CRIME_ID,crimeId);
+
+        CrimeFragment crimeFragment = new CrimeFragment();
+        crimeFragment.setArguments(args);
+        return crimeFragment;
+
     }
 
     @Override
