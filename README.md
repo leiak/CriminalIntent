@@ -1,3 +1,3 @@
 # CriminalIntent
-The chapter 12 dialog and fragment translate data
+The chapter 13 actionBar
 
