@@ -28,6 +28,7 @@ public class CrimeFragment extends Fragment {
     private EditText mCrimeTitle;
     private Button mCrimeData;
     private CheckBox mCrimeSolved;
+    private Button mCrimeDelete;
 
     private static final String DIALOG_DATE = "DialogDate";
 
@@ -117,6 +118,17 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mCrime.setSolved(b);
+            }
+        });
+
+        mCrimeDelete = v.findViewById(R.id.crime_delete_button);
+        mCrimeDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
+                CrimeLab.get(getActivity()).removeCrime(crimeId);
+                getActivity().finish();
+
             }
         });
 
